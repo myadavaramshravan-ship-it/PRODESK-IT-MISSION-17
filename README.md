@@ -78,6 +78,12 @@ npm run build
 - Output directory: `dist`
 - Keep `client/vercel.json` in the repo for SPA routing.
 
+Environment variables for Vercel:
+
+- `VITE_API_URL` — set to your backend URL, e.g. `https://prodesk-it-mission-17.onrender.com`
+
+When `VITE_API_URL` is set, the frontend will send API requests to that URL. If unset, it will use the relative `/api` path (useful for local dev with Vite proxy).
+
 ### Deploy backend to Render
 
 - Set the root directory to `server`
