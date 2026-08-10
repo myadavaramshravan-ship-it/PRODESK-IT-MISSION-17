@@ -88,6 +88,17 @@ npm run build
 	- `JWT_SECRET`
 	- `CLIENT_ORIGIN` (the Vercel frontend URL)
 
+### Deployed URLs (set these values on Render)
+
+- Frontend (Vercel): `https://prodesk-it-mission-17.vercel.app/`
+- Backend (Render): `https://prodesk-it-mission-17.onrender.com/`
+
+Example `CLIENT_ORIGIN` value to set on Render:
+
+```
+CLIENT_ORIGIN=https://prodesk-it-mission-17.vercel.app
+```
+
 ## Notes
 
 - Make sure MongoDB is running and the connection string is valid.

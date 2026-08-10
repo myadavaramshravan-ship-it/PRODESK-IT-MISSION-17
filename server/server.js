@@ -20,9 +20,21 @@ const app = express();
 connectDB();
 
 app.use(express.json());
+
+const allowedOrigins = [
+    process.env.CLIENT_ORIGIN,
+    "http://localhost:5173",
+    "https://prodesk-it-mission-17.vercel.app"
+].filter(Boolean);
+
 app.use(
     cors({
-        origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+        origin: (origin, callback) => {
+            // allow requests with no origin (mobile apps, curl, server-to-server)
+            if (!origin) return callback(null, true)
+            if (allowedOrigins.indexOf(origin) !== -1) return callback(null, true)
+            return callback(new Error('CORS policy: origin not allowed'), false)
+        },
         credentials: true
     })
 );
