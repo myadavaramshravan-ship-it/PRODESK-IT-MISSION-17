@@ -69,6 +69,25 @@ cd client
 npm run build
 ```
 
+## Deployment
+
+### Deploy frontend to Vercel
+
+- Set the root directory to `client`
+- Build command: `npm run build`
+- Output directory: `dist`
+- Keep `client/vercel.json` in the repo for SPA routing.
+
+### Deploy backend to Render
+
+- Set the root directory to `server`
+- Build command: `npm install`
+- Start command: `npm start`
+- Configure Render environment variables:
+	- `MONGO_URI`
+	- `JWT_SECRET`
+	- `CLIENT_ORIGIN` (the Vercel frontend URL)
+
 ## Notes
 
 - Make sure MongoDB is running and the connection string is valid.
