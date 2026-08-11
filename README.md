@@ -4,25 +4,23 @@ A full-stack MERN application for vehicle booking management. It includes a Reac
 
 ## Features
 
-- User registration and login with JWT auth
-- Protected dashboard for booking management
+- User registration and login with JWT authentication
+- Protected booking dashboard
 - Create, update, delete, and list bookings
-- Responsive UI with client-side routing
-- API requests proxied during development
+- Responsive React UI with client-side routing
+- Backend API proxied during local development
 
 ## Project structure
 
-- `client/` - React app built with Vite
-- `server/` - Express backend API
+- `client/` — React frontend built with Vite
+- `server/` — Express backend API
 
-## Setup
+## Prerequisites
 
-### Prerequisites
-
-- Node.js 18+ / npm
+- Node.js 18+ and npm
 - MongoDB connection URL
 
-### Install dependencies
+## Install dependencies
 
 ```bash
 cd client
@@ -32,15 +30,21 @@ cd ../server
 npm install
 ```
 
-### Environment variables
+## Environment variables
 
-Create a `.env` file in `server/` with values like:
+Create a `.env` file in the `server/` folder with the following values:
 
 ```env
 MONGO_URI=<your-mongodb-connection-string>
 JWT_SECRET=<your-jwt-secret>
 PORT=5000
+CLIENT_ORIGIN=<your-frontend-url>
 ```
+
+- `MONGO_URI` — MongoDB connection string
+- `JWT_SECRET` — secret used for signing JWT tokens
+- `PORT` — backend port (default is `5000`)
+- `CLIENT_ORIGIN` — frontend origin to allow CORS (for production deployment)
 
 ## Run locally
 
@@ -51,6 +55,13 @@ cd server
 npm start
 ```
 
+For development with auto-reload:
+
+```bash
+cd server
+npm run dev
+```
+
 Start the frontend app:
 
 ```bash
@@ -58,9 +69,9 @@ cd client
 npm run dev
 ```
 
-The frontend uses Vite proxy settings so API requests to `/api` are forwarded to the backend.
+The frontend proxies `/api` requests to the backend during local development.
 
-## Production build
+## Build for production
 
 Build the client app:
 
@@ -71,41 +82,38 @@ npm run build
 
 ## Deployment
 
-### Deploy frontend to Vercel
+### Frontend (Vercel)
 
-- Set the root directory to `client`
+- Root directory: `client`
 - Build command: `npm run build`
 - Output directory: `dist`
-- Keep `client/vercel.json` in the repo for SPA routing.
 
-Environment variables for Vercel:
+Set the following environment variable in Vercel:
 
-- `VITE_API_URL` — set to your backend URL, e.g. `https://prodesk-it-mission-17.onrender.com`
+- `VITE_API_URL` — backend API URL, e.g. `https://your-backend-url.com`
 
-When `VITE_API_URL` is set, the frontend will send API requests to that URL. If unset, it will use the relative `/api` path (useful for local dev with Vite proxy).
+If `VITE_API_URL` is not provided, the frontend defaults to `/api`.
 
-### Deploy backend to Render
+### Backend (Render or similar)
 
-- Set the root directory to `server`
+- Root directory: `server`
 - Build command: `npm install`
 - Start command: `npm start`
-- Configure Render environment variables:
-	- `MONGO_URI`
-	- `JWT_SECRET`
-	- `CLIENT_ORIGIN` (the Vercel frontend URL)
 
-### Deployed URLs (set these values on Render)
+Required environment variables:
 
-- Frontend (Vercel): `https://prodesk-it-mission-17.vercel.app/`
-- Backend (Render): `https://prodesk-it-mission-17.onrender.com/`
+- `MONGO_URI`
+- `JWT_SECRET`
+- `CLIENT_ORIGIN`
 
-Example `CLIENT_ORIGIN` value to set on Render:
+Example `CLIENT_ORIGIN` value:
 
-```
-CLIENT_ORIGIN=https://prodesk-it-mission-17.vercel.app
+```env
+CLIENT_ORIGIN=https://prodesk-it-mission-17.vercel.app/
 ```
 
 ## Notes
 
-- Make sure MongoDB is running and the connection string is valid.
-- The app expects `/api/auth` and `/api/bookings` endpoints from the backend.
+- Ensure MongoDB is reachable and the connection string is valid.
+- The backend exposes `/api/auth` and `/api/bookings` endpoints.
+- `VITE_API_URL` is optional for local development but required for production deployments with separate frontend and backend domains.

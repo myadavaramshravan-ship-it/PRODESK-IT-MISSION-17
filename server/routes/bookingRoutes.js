@@ -12,32 +12,24 @@ const authMiddleware =
 
 const router = express.Router();
 
-
-// CREATE
 router.post(
     "/",
     authMiddleware,
     createBooking
 );
 
-
-// READ
 router.get(
     "/",
     authMiddleware,
     getBookings
 );
 
-
-// UPDATE
 router.put(
     "/:id",
     authMiddleware,
     updateBooking
 );
 
-
-// DELETE
 router.delete(
     "/:id",
     authMiddleware,

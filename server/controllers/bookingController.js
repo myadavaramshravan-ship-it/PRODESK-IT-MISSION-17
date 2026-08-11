@@ -1,7 +1,5 @@
 const Booking = require("../models/Booking");
 
-
-// CREATE BOOKING
 const createBooking = async (req, res) => {
     try {
         const {
@@ -49,8 +47,6 @@ const createBooking = async (req, res) => {
     }
 };
 
-
-// GET BOOKINGS
 const getBookings = async (req, res) => {
     try {
         const bookings =
@@ -74,8 +70,6 @@ const getBookings = async (req, res) => {
     }
 };
 
-
-// UPDATE BOOKING
 const updateBooking = async (req, res) => {
     try {
         const { id } = req.params;
@@ -113,8 +107,6 @@ const updateBooking = async (req, res) => {
     }
 };
 
-
-// DELETE BOOKING
 const deleteBooking = async (req, res) => {
     try {
         const { id } = req.params;
